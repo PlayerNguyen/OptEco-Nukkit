@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+}
+import org.apache.tools.ant.filters.ReplaceTokens
+
+group 'com.github.playernguyen'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://repo.nukkitx.com/maven-snapshots'
+    }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile "cn.nukkit:nukkit:1.0-SNAPSHOT"
+}
+
+processResources {
+    from (sourceSets.main.resources.srcDirs) {
+        filter(ReplaceTokens, tokens: ['version' : project.version])
+    }
+}
